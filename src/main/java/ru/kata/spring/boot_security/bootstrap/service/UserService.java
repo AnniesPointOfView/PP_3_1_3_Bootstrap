@@ -12,7 +12,6 @@ public interface UserService extends UserDetailsService {
     List<User> findAllUsers();
     User findById(int id);
     User findByUsername(String username);
-    boolean saveUser(User user, BindingResult bindingResult, Model model);
     boolean saveUser(User user);
     void updateUser(int id, User user);
     void deleteUser(int id);

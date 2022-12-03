@@ -43,29 +43,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
 
-    @Override
-    @Transactional
-    public boolean saveUser(User user, BindingResult bindingResult, Model model) {
-        model.addAttribute("allRoles", roleService.findAllRoles());
-
-        if (bindingResult.hasErrors()) {
-            return false;
-        }
-
-        if (user == null) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
-
-        try {
-            userRepository.save(user);
-        } catch (PersistenceException e) {
-            model.addAttribute("persistenceException", true);
-            return false;
-        }
-
-        return true;
-    }
-
     @Transactional
     @Override
     public boolean saveUser(User user) {
